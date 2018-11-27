@@ -5,46 +5,58 @@
  */
 package mb;
 
+import br.ufmt.rnp.des4.entidades.Cliente;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 @Named(value="clienteMB")
 @RequestScoped
 public class ClienteMB {
-    private String nome;
-    private String endereco;
-    private String telefone;
-
+    
+    @Inject
+    private UFMB ufMB;
+    
+    private Cliente cliente = new Cliente();
+    private String sigla;
+    
     public void salvar(){
-        System.out.println(nome);
-        System.out.println(endereco);
-        System.out.println(telefone);
-        
+        System.out.println("salvar");
+        cliente.setUf(ufMB.find(sigla));
+        //Inserção no Banco
+        System.out.println(cliente.getNome());
+        System.out.println(cliente.getEndereco());
+        System.out.println(cliente.getTelefone());
+        System.out.println(cliente.getUf().getSigla());
+        cliente = new Cliente();
+        sigla = null;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public UFMB getUfMB() {
+        return ufMB;
+    }
+
+    public void setUfMB(UFMB ufMB) {
+        this.ufMB = ufMB;
+    }
+
+    public String getSigla() {
+        return sigla;
+    }
+
+    public void setSigla(String sigla) {
+        this.sigla = sigla;
     }
     
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
+    
     
     
     
