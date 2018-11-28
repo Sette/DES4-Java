@@ -5,9 +5,12 @@
  */
 package br.ufmt.rnp.des4.entidades;
 
+import javax.validation.constraints.NotNull;
+
 
 public class Cliente {
     private int id;
+    @NotNull
     private String nome;
     private String endereco;
     private String telefone;

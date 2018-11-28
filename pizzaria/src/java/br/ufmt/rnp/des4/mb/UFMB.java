@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mb;
+package br.ufmt.rnp.des4.mb;
 
 import br.ufmt.rnp.des4.entidades.UF;
 import java.util.ArrayList;

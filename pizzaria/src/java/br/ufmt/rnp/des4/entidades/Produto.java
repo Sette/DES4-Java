@@ -5,22 +5,15 @@
  */
 package br.ufmt.rnp.des4.entidades;
 
+import javax.enterprise.inject.Model;
+
 /**
  *
  * @author aluno
  */
-public class UF {
-    private int id;
+public class Produto {
     private String nome;
-    private String sigla;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    private Double preco;
 
     public String getNome() {
         return nome;
@@ -30,12 +23,12 @@ public class UF {
         this.nome = nome;
     }
 
-    public String getSigla() {
-        return sigla;
+    public Double getPreco() {
+        return preco;
     }
 
-    public void setSigla(String sigla) {
-        this.sigla = sigla;
+    public void setPreco(Double preco) {
+        this.preco = preco;
     }
     
     

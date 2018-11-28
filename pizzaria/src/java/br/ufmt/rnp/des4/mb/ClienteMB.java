@@ -3,33 +3,32 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mb;
+package br.ufmt.rnp.des4.mb;
 
 import br.ufmt.rnp.des4.entidades.Cliente;
 import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 @Named(value="clienteMB")
 @RequestScoped
 public class ClienteMB {
     
-    @Inject
-    private UFMB ufMB;
     
     private Cliente cliente = new Cliente();
-    private String sigla;
     
     public void salvar(){
         System.out.println("salvar");
-        cliente.setUf(ufMB.find(sigla));
         //Inserção no Banco
         System.out.println(cliente.getNome());
         System.out.println(cliente.getEndereco());
         System.out.println(cliente.getTelefone());
         System.out.println(cliente.getUf().getSigla());
         cliente = new Cliente();
-        sigla = null;
+        FacesMessage msg = new FacesMessage("Cliente salvo com sucesso!");
+        msg.setSeverity(FacesMessage.SEVERITY_INFO);
+        FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
     public Cliente getCliente() {
@@ -40,24 +39,4 @@ public class ClienteMB {
         this.cliente = cliente;
     }
 
-    public UFMB getUfMB() {
-        return ufMB;
-    }
-
-    public void setUfMB(UFMB ufMB) {
-        this.ufMB = ufMB;
-    }
-
-    public String getSigla() {
-        return sigla;
-    }
-
-    public void setSigla(String sigla) {
-        this.sigla = sigla;
-    }
-    
-    
-    
-    
-    
 }
