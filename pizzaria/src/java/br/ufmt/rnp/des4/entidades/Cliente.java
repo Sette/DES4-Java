@@ -5,15 +5,30 @@
  */
 package br.ufmt.rnp.des4.entidades;
 
+import javax.enterprise.inject.Model;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-
-
+@Model
+@Entity
+@Table(name = "tb_cliente")
+@SequenceGenerator(name = "cliente_seq",allocationSize = 1,sequenceName = "tb_cliente_id_seq")
 public class Cliente {
+    @Id
+    @GeneratedValue(generator="cliente_seq",strategy = GenerationType.SEQUENCE)
     private int id;
     @NotNull
     private String nome;
     private String endereco;
     private String telefone;
+    @ManyToOne
+    @JoinColumn(name = "uf_id")
     private UF uf;
     private String sigla;
 

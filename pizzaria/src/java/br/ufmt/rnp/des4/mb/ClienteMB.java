@@ -5,35 +5,36 @@
  */
 package br.ufmt.rnp.des4.mb;
 
+import br.ufmt.rnp.des4.dao.ClienteDAO;
 import br.ufmt.rnp.des4.entidades.Cliente;
+import br.ufmt.rnp.des4.util.Util;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 @Named(value="clienteMB")
-@SessionScoped
-
-public class ClienteMB implements Serializable {
-    
-    private Cliente cliente = new Cliente();
+@RequestScoped
+public class ClienteMB  {
+    @Inject
+    private Cliente cliente ;
     private List<Cliente> clientes = new ArrayList<Cliente>();
+    private ClienteDAO dao;
+
+    
     
     public String salvar(){
         System.out.println("salvar");
         //Inserção no Banco
-        System.out.println(cliente.getNome());
-        System.out.println(cliente.getEndereco());
-        System.out.println(cliente.getTelefone());
-        System.out.println(cliente.getUf().getSigla());
-        clientes.add(cliente);
-        cliente = new Cliente();
-        FacesMessage msg = new FacesMessage("Salvo","Cliente salvo com sucesso!");
-        msg.setSeverity(FacesMessage.SEVERITY_INFO);
-        FacesContext.getCurrentInstance().addMessage(null, msg);
+        dao.salvar(cliente);
+        clientes = dao.consultar();
+        cliente = null;
+        
+        Util.addMensagem("Salvo com sucesso");
         return "index";
     }
     
@@ -53,13 +54,7 @@ public class ClienteMB implements Serializable {
     }
     
     public String editar(int id){
-        for (int i = 0; i < clientes.size(); i++) {
-            Cliente c = clientes.get(i);
-            if(c.getId() == id){
-                cliente = c;
-                break;
-            }
-        }
+        cliente = dao.getByid(id);
         return "cliente";
     }
 
@@ -79,5 +74,12 @@ public class ClienteMB implements Serializable {
         this.clientes = clientes;
     }
     
+    public ClienteDAO getDao() {
+        return dao;
+    }
+
+    public void setDao(ClienteDAO dao) {
+        this.dao = dao;
+    }
     
 }

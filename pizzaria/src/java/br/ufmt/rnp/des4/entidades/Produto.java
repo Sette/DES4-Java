@@ -6,11 +6,15 @@
 package br.ufmt.rnp.des4.entidades;
 
 import javax.enterprise.inject.Model;
+import javax.persistence.Entity;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 /**
  *
  * @author aluno
  */
+
 public class Produto {
     private String nome;
     private Double preco;

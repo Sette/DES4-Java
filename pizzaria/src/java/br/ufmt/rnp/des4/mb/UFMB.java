@@ -21,26 +21,31 @@ public class UFMB {
         System.out.println("Criou UF");
         ufs = new ArrayList<UF>();
         UF aux = new UF();
+        aux.setId(1);
         aux.setNome("Mato Grosso");
         aux.setSigla("MT");
         ufs.add(aux);
         
         aux = new UF();
+        aux.setId(2);
         aux.setNome("São Paulo");
         aux.setSigla("SP");
         ufs.add(aux);
         
         aux = new UF();
+        aux.setId(3);
         aux.setNome("Mato Grosso do Sul");
         aux.setSigla("MS");
         ufs.add(aux);
         
         aux = new UF();
+        aux.setId(4);
         aux.setNome("Goiás");
         aux.setSigla("GO");
         ufs.add(aux);
         
         aux = new UF();
+        aux.setId(5);
         aux.setNome("Brasília");
         aux.setSigla("DF");
         ufs.add(aux);
